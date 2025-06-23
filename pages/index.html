@@ -1,8 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary Meta Tags -->
+  <title>BUGZ</title>
+  <meta name="title" content="BUGZ">
+  <meta name="description" content="Beta Website">
+
+  <!-- Favicon -->
+  <link rel="icon" href="../assets/icon.png" type="image/png">
+  <link rel="shortcut icon" href="../assets/icon.png" type="image/png">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://bugz.buzz/">
+  <meta property="og:title" content="BUGZ">
+  <meta property="og:description" content="Beta Website">
+  <meta property="og:image" content="../assets/logo.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://bugz.buzz/">
+  <meta name="twitter:title" content="BUGZ">
+  <meta name="twitter:description" content="Beta Website">
+  <meta name="twitter:image" content="../assets/logo.png">
+
+  <!-- Misc -->
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#ff6633">
   <title>BUGZ Store</title>
   <style>
     /* Font Imports */
@@ -96,13 +124,19 @@
     .hero { display: flex; min-height: calc(100vh - 80px); }
     .hero-left, .hero-right { flex: 1; position: relative; overflow: hidden; }
     .hero-left video {
-      width: 100%; height: 100%; object-fit: cover;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* shift video content 10% to the right */
+      object-position: 10% center;
     }
     .hero-right {
       background-image:
         url('../assets/doodlebg.jpg'),
+
         linear-gradient(rgba(0,0,0,var(--bg-overlay-alpha)), rgba(0,0,0,var(--bg-overlay-alpha)));
       background-size: cover;
+      
       background-position: center;
       color: var(--text-light);
       display: flex;
