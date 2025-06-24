@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -31,7 +31,7 @@
   <!-- Misc -->
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#ff6633">
-  <title>BUGZ Store</title>
+
   <style>
     /* Font Imports */
     @font-face { font-family: 'Flames'; src: url('../assets/Flames.ttf') format('truetype'); }
@@ -72,6 +72,50 @@
       color: var(--brand-color);
       margin-top: 0.8%;
     }
+
+    /* Hamburger toggle */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+    .nav-toggle .hamburger {
+      display: block;
+      width: 25px;
+      height: 2px;
+      background: #333;
+      position: relative;
+      transition: transform .3s;
+    }
+    .nav-toggle .hamburger::before,
+    .nav-toggle .hamburger::after {
+      content: '';
+      display: block;
+      width: 25px;
+      height: 2px;
+      background: #333;
+      position: absolute;
+      left: 0;
+      transition: transform .3s;
+    }
+    .nav-toggle .hamburger::before { top: -8px; }
+    .nav-toggle .hamburger::after { top: 8px; }
+    .nav-toggle[aria-expanded="true"] .hamburger {
+      background: transparent;
+    }
+    .nav-toggle[aria-expanded="true"] .hamburger::before {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .nav-toggle[aria-expanded="true"] .hamburger::after {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+    }
     nav a {
       position: relative;
       margin-left: 2rem;
@@ -94,7 +138,7 @@
     }
     nav a:hover::after { width: 100%; }
 
-    /* NAVBAR “My Cart” button styling */
+    /* “My Cart” button styling */
     nav a.cart-button {
       display: inline-flex;
       align-items: center;
@@ -105,13 +149,11 @@
       color: var(--text-light);
       font-weight: bold;
       transition: background .2s, transform .1s;
-      margin-left: 2rem;
     }
     nav a.cart-button:hover {
       background: var(--brand-color-dark);
       transform: translateY(-1px);
     }
-    /* Cart icon in navbar */
     .nav-cart-icon {
       width: 1rem;
       height: auto;
@@ -127,16 +169,13 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      /* shift video content 10% to the right */
       object-position: 10% center;
     }
     .hero-right {
       background-image:
         url('../assets/doodlebg.jpg'),
-
         linear-gradient(rgba(0,0,0,var(--bg-overlay-alpha)), rgba(0,0,0,var(--bg-overlay-alpha)));
       background-size: cover;
-      
       background-position: center;
       color: var(--text-light);
       display: flex;
@@ -262,22 +301,74 @@
 
     /* Responsive */
     @media (max-width: 768px) {
+      /* Show hamburger */
+      .nav-toggle {
+        display: block;
+      }
+
+      /* Hide default nav */
+      nav {
+        display: none;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        right: 0;
+        background: #fff;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem 2rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      }
+      nav.show {
+        display: flex;
+      }
+      nav a {
+        margin: 0.75rem 0;
+      }
+
+      /* Stack hero */
       .hero { flex-direction: column; }
-      .hero-left, .hero-right { min-height: 50vh; }
       .hero-right { padding: 2rem; }
+
+      /* Carousel size */
       .carousel { width: 90%; }
       .carousel-button { font-size: 1.5rem; }
     }
+    @media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    /* make the hero exactly fill the viewport below the 80px header */
+    height: calc(100vh - 80px);
+  }
+  .hero-left,
+  .hero-right {
+    /* now height:50% really is 50% of that parent height */
+    height: 50%;
+    min-height: 0;        /* reset the old min-height */
+  }
+  .hero-left video {
+    /* will now stretch to fill its parent */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
   </style>
 </head>
 <body>
   <header>
     <div class="logo">BUGZ</div>
+
+    <!-- Hamburger toggle -->
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span class="hamburger"></span>
+    </button>
+
     <nav>
       <a href="#shop">Shop</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
-      <!-- updated My Cart button -->
       <a href="#cart" class="cart-button">
         My Cart
         <img src="../assets/cart.svg" alt="Cart icon" class="nav-cart-icon">
@@ -294,20 +385,15 @@
         <h1>Untitled Collection</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         <div class="hero-buttons">
-          <!-- SHOP with arrow.svg -->
           <a href="#shop">
             Shop
             <img src="../assets/arrow.svg" alt="Shop arrow" class="cart-icon shop-icon">
           </a>
-
-          <!-- MY CART with cart.svg -->
           <a href="#cart">
             My Cart
             <img src="../assets/cart.svg" alt="Cart icon" class="cart-icon">
           </a>
         </div>
-
-        <!-- Enhanced Carousel -->
         <div class="featured-carousel">
           <div class="carousel">
             <button class="carousel-button prev">‹</button>
@@ -347,6 +433,16 @@
   </main>
 
   <script>
+    // Navbar toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const nav       = document.querySelector('nav');
+    navToggle.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', !expanded);
+      nav.classList.toggle('show');
+    });
+
+    // Carousel logic
     const track   = document.querySelector('.carousel-track');
     const slides  = Array.from(track.children);
     const prevBtn = document.querySelector('.carousel-button.prev');
