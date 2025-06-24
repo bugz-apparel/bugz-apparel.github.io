@@ -8,7 +8,7 @@
   <!-- Primary Meta Tags -->
   <title>BUGZ</title>
   <meta name="title" content="BUGZ">
-  <meta name="description" content="Beta Website">
+  <meta name="description" content="Browse our collection of BUGZ">
 
   <!-- Favicon -->
   <link rel="icon" href="../assets/icon.png" type="image/png">
@@ -18,21 +18,21 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://bugz.buzz/">
   <meta property="og:title" content="BUGZ">
-  <meta property="og:description" content="Beta Website">
+  <meta property="og:description" content="Browse our collection of BUGZ">
   <meta property="og:image" content="../assets/logo.png">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" content="https://bugz.buzz/">
   <meta name="twitter:title" content="BUGZ">
-  <meta name="twitter:description" content="Beta Website">
+  <meta name="twitter:description" content="Browse our collection of BUGZ">
   <meta name="twitter:image" content="../assets/logo.png">
 
   <!-- Misc -->
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#ff6633">
 
-  <style>
+<style>
     /* Font Imports */
     @font-face { font-family: 'Flames'; src: url('../assets/Flames.ttf') format('truetype'); }
     @font-face { font-family: 'Soupkitchen'; src: url('../assets/Soupkitchen.ttf') format('truetype'); }
@@ -334,148 +334,262 @@
       .carousel { width: 90%; }
       .carousel-button { font-size: 1.5rem; }
     }
+    /* ====== SHOP AREA STYLES ====== */
+.shop-area {
+  padding: 4rem 2rem;
+  background: #fafafa;
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  justify-content: center;
+}
+
+.filter-group {
+  position: relative;
+}
+
+.filter-group input,
+.filter-group select {
+  appearance: none;
+  border: 2px solid #eee;
+  border-radius: 50px;
+  padding: 0.75rem 1.5rem;
+  padding-left: 3rem;
+  font-size: 1rem;
+  transition: border-color .2s, box-shadow .2s;
+  background: #fff;
+}
+
+.filter-group input:focus,
+.filter-group select:focus {
+  outline: none;
+  border-color: var(--brand-color);
+  box-shadow: 0 0 0 3px rgba(255,102,51,0.2);
+}
+
+.filter-group .filter-icon {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  width: 1.2rem;
+  height: auto;
+  transform: translateY(-50%);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Special price range layout */
+.price-group {
+  display: flex;
+  align-items: center;
+}
+
+.price-separator {
+  margin: 0 0.5rem;
+  font-size: 1.2rem;
+  color: #aaa;
+}
+
+/* Product Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+/* Product Card */
+.product-card {
+  background: #fff;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  transition: transform .2s, box-shadow .2s;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+}
+
+.card-image {
+  flex: 0 0 180px;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-content h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.card-content .type {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 1rem;
+}
+
+.card-content .price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--brand-color-dark);
+  margin-bottom: 1rem;
+}
+
+.btn-add {
+  align-self: start;
+  background: var(--brand-color);
+  color: var(--text-light);
+  border: none;
+  padding: 0.6rem 1.6rem;
+  border-radius: 50px;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background .2s, transform .1s;
+}
+
+.btn-add:hover {
+  background: var(--brand-color-dark);
+  transform: translateY(-1px);
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .filters { justify-content: space-around; }
+  .filter-group input,
+  .filter-group select { width: 100%; max-width: 220px; }
+}
+
   </style>
 </head>
 <body>
   <header>
     <div class="logo">BUGZ</div>
 
-    <!-- Hamburger toggle -->
     <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
       <span class="hamburger"></span>
     </button>
 
     <nav>
-      <a href="/shop/">Shop</a>
+      <a href="">Shop</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
       <a href="#cart" class="cart-button">
         My Cart
-        <img src="../assets/cart.svg" alt="Cart icon" class="nav-cart-icon">
+        <img src="../assets/cart.svg" alt="Cart" style="width:1rem; filter:invert(1);">
       </a>
     </nav>
   </header>
 
-  <main>
-    <section class="hero">
-      <div class="hero-left">
-        <video
-          autoplay
-          muted
-          loop
-          playsinline
-          webkit-playsinline
-          style="width:100%;height:100%;object-fit:cover;object-position:10% center"
-        >
-          <source src="../assets/stock.mp4" type="video/mp4">
-          <source src="../assets/stock.webm" type="video/webm">
-          Your browser doesn’t support HTML5 video.
-        </video>
+<!-- ====== MAIN SHOP SECTION ====== -->
+<main>
+  <section class="shop-area">
+    <!-- Filters -->
+    <div class="filters">
+      <div class="filter-group">
+        <input type="text" id="searchInput" placeholder="Search products…" />
+        <img src="../assets/icons/search.svg" alt="Search" class="filter-icon">
       </div>
-      <div class="hero-right">
-        <h1>Untitled Collection</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        <div class="hero-buttons">
-          <a href="#shop">
-            Shop
-            <img src="../assets/arrow.svg" alt="Shop arrow" class="cart-icon shop-icon">
-          </a>
-          <a href="#cart">
-            My Cart
-            <img src="../assets/cart.svg" alt="Cart icon" class="cart-icon">
-          </a>
+      <div class="filter-group">
+        <select id="typeFilter">
+          <option value="">All Types</option>
+          <option value="type1">Type 1</option>
+          <option value="type2">Type 2</option>
+        </select>
+        <img src="../assets/icons/tag.svg" alt="Type" class="filter-icon">
+      </div>
+      <div class="filter-group price-group">
+        <input type="number" id="minPrice" placeholder="Min $" />
+        <span class="price-separator">–</span>
+        <input type="number" id="maxPrice" placeholder="Max $" />
+        <img src="../assets/icons/price-tag.svg" alt="Price" class="filter-icon">
+      </div>
+    </div>
+
+    <!-- Products -->
+    <div class="product-grid">
+      <div class="product-card"
+           data-name="Placeholder Item"
+           data-type="type1"
+           data-price="19.99">
+        <div class="card-image">
+          <img src="../assets/feature.jpg" alt="Placeholder Item">
         </div>
-        <div class="featured-carousel">
-          <div class="carousel">
-            <button class="carousel-button prev">‹</button>
-            <div class="carousel-track-container">
-              <ul class="carousel-track">
-                <li class="carousel-slide">
-                  <img src="../assets/feature.jpg" alt="Basic Tee">
-                  <div class="product-info">
-                    <div class="product-name">Item</div>
-                    <div class="price">$00.00</div>
-                    <button class="add-to-cart">Add to Cart</button>
-                  </div>
-                </li>
-                <li class="carousel-slide">
-                  <img src="../assets/feature.jpg" alt="Vintage Tee">
-                  <div class="product-info">
-                    <div class="product-name">Item</div>
-                    <div class="price">$00.00</div>
-                    <button class="add-to-cart">Add to Cart</button>
-                  </div>
-                </li>
-                <li class="carousel-slide">
-                  <img src="../assets/feature.jpg" alt="Modern Tee">
-                  <div class="product-info">
-                    <div class="product-name">Item</div>
-                    <div class="price">$00.00</div>
-                    <button class="add-to-cart">Add to Cart</button>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <button class="carousel-button next">›</button>
-          </div>
+        <div class="card-content">
+          <h3>Item</h3>
+          <p class="type">Type: Type 1</p>
+          <p class="price">$00.00</p>
+          <button class="btn-add">Add to Cart</button>
         </div>
       </div>
-    </section>
-  </main>
+      <!-- …other cards… -->
+    </div>
+  </section>
+</main>
+
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Navbar toggle (ES5)
+      // Navbar toggle
       var navToggle = document.querySelector('.nav-toggle');
       var nav = document.querySelector('nav');
       navToggle.addEventListener('click', function() {
         var expanded = navToggle.getAttribute('aria-expanded') === 'true';
         navToggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-        if (nav.classList.contains('show')) {
-          nav.classList.remove('show');
-        } else {
-          nav.classList.add('show');
-        }
+        nav.classList.toggle('show');
       });
 
-      // Carousel logic (ES5)
-      var track   = document.querySelector('.carousel-track');
-      var slides  = Array.prototype.slice.call(track.children);
-      var prevBtn = document.querySelector('.carousel-button.prev');
-      var nextBtn = document.querySelector('.carousel-button.next');
-      var index   = 0;
+      // Filtering logic
+      var searchInput = document.getElementById('searchInput');
+      var typeFilter  = document.getElementById('typeFilter');
+      var minPrice    = document.getElementById('minPrice');
+      var maxPrice    = document.getElementById('maxPrice');
+      var products    = document.querySelectorAll('.product-card');
 
-      function updateButtons() {
-        prevBtn.disabled = (index === 0);
-        nextBtn.disabled = (index === slides.length - 1);
+      function filterProducts() {
+        var query = searchInput.value.toLowerCase();
+        var type  = typeFilter.value;
+        var min   = parseFloat(minPrice.value) || 0;
+        var max   = parseFloat(maxPrice.value) || Infinity;
+
+        products.forEach(function(card) {
+          var name  = card.dataset.name.toLowerCase();
+          var ptype = card.dataset.type;
+          var price = parseFloat(card.dataset.price);
+
+          var matchesSearch = name.includes(query);
+          var matchesType   = !type || ptype === type;
+          var matchesPrice  = price >= min && price <= max;
+
+          card.style.display = (matchesSearch && matchesType && matchesPrice)
+                                ? '' : 'none';
+        });
       }
 
-      function goToSlide(i) {
-        track.style.transform = 'translateX(-' + (i * 100) + '%)';
-        updateButtons();
-      }
-
-      prevBtn.addEventListener('click', function() {
-        if (index > 0) {
-          index--;
-          goToSlide(index);
-        }
+      [searchInput, typeFilter, minPrice, maxPrice].forEach(function(el) {
+        el.addEventListener('input', filterProducts);
       });
-      nextBtn.addEventListener('click', function() {
-        if (index < slides.length - 1) {
-          index++;
-          goToSlide(index);
-        }
-      });
-
-      // initialize
-      goToSlide(0);
-
-      // Auto-play every 3s
-      setInterval(function() {
-        index = (index + 1) % slides.length;
-        goToSlide(index);
-      }, 3000);
     });
   </script>
 </body>
